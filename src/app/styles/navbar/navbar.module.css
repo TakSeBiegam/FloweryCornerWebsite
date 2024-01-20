@@ -1,0 +1,48 @@
+.main_container {
+  width: 75%;
+  background-color: #acd1ca;
+  margin: auto;
+}
+
+.icons_container {
+  max-height: 26px;
+  display: flex;
+  width: 98%;
+}
+
+.bottom {
+  background-color: wheat;
+  border-radius: 10px;
+  height: 5px;
+}
+
+.icon {
+  width: 26px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.right_container {
+  display: flex;
+}
+
+.links {
+  justify-content: flex;
+  margin: auto;
+  width: 100%;
+}
+
+.links a {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+  padding: 2px;
+  margin: 0 10px;
+}
+
+.links a:hover {
+  background-color: #333;
+  color: #fff;
+}
