@@ -1,5 +1,7 @@
 import { Paper } from "@/components/atoms";
-import { FlowerIcon } from "lucide-react";
+import { FlowerTile } from "@/components/atoms/FlowerTile";
+import { homePageGridMockData } from "@/data/mockData";
+import { ChevronLeft, ChevronRight, FlowerIcon } from "lucide-react";
 import React from "react";
 
 export const HomeGrid = () => {
@@ -7,21 +9,20 @@ export const HomeGrid = () => {
     <div className="grid grid-cols-[1fr_3fr] gap-x-4 gap-y-10">
       <Paper className=" flex gap-4">
         <FlowerIcon />
-        Specjalne oferty
+        <p className="font-medium">Specjalne oferty</p>
       </Paper>
-      <Paper className="">Trendy kwiatki łaaaaa</Paper>
-      <Paper className="">Dziwne info</Paper>
-      <div className=" grid grid-cols-3 gap-2">
-        <div className="bg-slate-50 py-2"></div>
-        <div className="bg-slate-50 py-2"></div>
-        <div className="bg-slate-50 py-2"></div>
-        <div className="bg-slate-50 py-2"></div>
-        <div className="bg-slate-50 py-2"></div>
-        <div className="bg-slate-50 py-2"></div>
-        <div className="bg-slate-50 py-2"></div>
-        <div className="bg-slate-50 py-2"></div>
-        <div className="bg-slate-50 py-2"></div>
-        <div className="bg-slate-50 py-2"></div>
+      <Paper className="flex justify-between">
+        <p className="font-medium">Trendy kwiatki łaaaaa</p>
+        <div className="flex">
+          <ChevronLeft className="cursor-pointer" />
+          <ChevronRight className="cursor-pointer" />
+        </div>
+      </Paper>
+      <Paper className="max-h-96">Dziwne info</Paper>
+      <div className=" grid grid-cols-3 gap-6">
+        {homePageGridMockData.map((data) => (
+          <FlowerTile {...data} key={data.name} />
+        ))}
       </div>
     </div>
   );
