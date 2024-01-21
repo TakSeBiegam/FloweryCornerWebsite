@@ -1,10 +1,7 @@
 import { Footer, Navbar } from "@/components/molecules";
+import { PropsWithChildren } from "react";
 
-export default function HomeLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const MainLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <div className="min-h-screen flex flex-col ">
       <Navbar />
@@ -12,4 +9,4 @@ export default function HomeLayout({
       <Footer />
     </div>
   );
-}
+};

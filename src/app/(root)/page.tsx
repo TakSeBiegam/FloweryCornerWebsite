@@ -4,7 +4,7 @@ import { HomeHero } from "./_components/HomeHero";
 
 export default function Home() {
   return (
-    <div className="flex w-full flex-col">
+    <div className="flex w-full flex-col gap-6">
       <HomeHero />
       <HomeCategories />
       <HomeGrid />

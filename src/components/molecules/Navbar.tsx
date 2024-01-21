@@ -6,7 +6,7 @@ import { NavbarIcons } from "../atoms";
 
 export const Navbar = () => {
   return (
-    <nav className="container mx-auto px-4">
+    <nav className="container mx-auto px-4 pb-20">
       <div className=" flex justify-between border-b-4 items-center py-6 ">
         <div className="flex gap-16">
           <Flower2 />

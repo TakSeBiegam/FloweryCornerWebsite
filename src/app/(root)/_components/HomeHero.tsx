@@ -4,7 +4,7 @@ import { HeroSearch } from "./HeroSearch";
 
 export const HomeHero = () => {
   return (
-    <section className="pt-20 flex justify-between">
+    <section className="flex justify-between">
       <div>
         <h1 className="text-6xl font-semibold">
           Znajdź idealne kwiaty na
