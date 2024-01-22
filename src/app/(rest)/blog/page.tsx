@@ -5,7 +5,7 @@ export default function Blog() {
   return (
     <div className="grid grid-cols-3 gap-10">
       {blogIdeas.map((b) => (
-        <BlogTile {...b} />
+        <BlogTile {...b} key={b.name} />
       ))}
     </div>
   );
