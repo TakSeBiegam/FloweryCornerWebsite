@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Sklep z kwiatkami",
-  description: "Super sklep z kwiatkami",
+  title: "Kwiecisty zakątek",
+  description: "Twoja kwiaciarnia od 1926",
 };
 export default function RootLayout({
   children,

@@ -3,8 +3,6 @@
 import { Search } from "lucide-react";
 import React from "react";
 
-//adam to kot
-
 export const HeroSearch = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

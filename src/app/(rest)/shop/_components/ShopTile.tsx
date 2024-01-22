@@ -27,7 +27,11 @@ export const ShopTile = (product: Product) => {
       </div>
       <div className="flex justify-between">
         <div className="flex gap-2 font-medium">
-          <span>Cena</span> <span>{`${product.price.toFixed(2)} PLN`}</span>
+          <span>Cena</span>{" "}
+          <span>{`${product.price.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })} PLN`}</span>
         </div>
         <div className="flex flex-col justify-end">
           <span

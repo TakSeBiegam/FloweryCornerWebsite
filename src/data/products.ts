@@ -1,5 +1,5 @@
 export interface Product {
-    id: number,
+    id: number;
     name: string;
     description: string;
     price: number;
@@ -8,9 +8,8 @@ export interface Product {
     image: string;
     available?: boolean;
     isNew?: boolean;
-    rate: number
+    rate: number;
 }
-
 
 export const products: Product[] = [
     {
@@ -19,94 +18,62 @@ export const products: Product[] = [
         category: "Rose",
         image: "/images/flowers/roza.jpg",
         generalCategory: "flower",
-        description: "Doskonałe jako prezent na różne okazje – od romantycznych randek po święta czy uroczystości rodzinne. Każda róża w naszym sklepie to nie tylko kwiat, ale także wyraz uczuć i troski.",
+        description:
+            "Doskonałe jako prezent na różne okazje – od romantycznych randek po święta czy uroczystości rodzinne. Każda róża w naszym sklepie to nie tylko kwiat, ale także wyraz uczuć i troski.",
         price: 20.21,
         available: true,
         isNew: true,
-        rate: 4.3
+        rate: 4.3,
     },
     {
         id: 2,
-        name: "Bukiet róż",
-        category: "Bouquet",
-        image: "https://images.pexels.com/photos/1133274/pexels-photo-1133274.jpeg",
+        name: "Elegancki Tulipan",
+        category: "Tulip",
+        image: "/images/flowers/lilia.jpg",
         generalCategory: "flower",
-        description: "Bukiet róż to klasyczny i elegancki prezent na każdą okazję.",
-        price: 150.00,
+        description:
+            "Tulipan to symbol elegancji i subtelności. Ten kwiat doskonale sprawdzi się jako prezent dla bliskiej osoby lub ozdoba wnętrza. Dostępny w różnych kolorach.",
+        price: 15.99,
         available: true,
         isNew: false,
-        rate: 4.7
+        rate: 4.0,
     },
     {
         id: 3,
-        name: "Wiązanka kwiatów",
-        category: "Bouquet",
-        image: "https://images.pexels.com/photos/1159850/pexels-photo-1159850.jpeg",
+        name: "Kolorowy Gerber",
+        category: "Gerbera",
+        image: "/images/flowers/roza.jpg",
         generalCategory: "flower",
-        description: "Wiązanka kwiatów to piękny i elegancki prezent na każdą okazję.",
-        price: 200.00,
+        description:
+            "Gerbera to kwiat pełen energii i radości. Doskonały wybór, aby wyrazić pozytywne emocje. Dostępny w różnorodnych kolorach, idealny na każdą okazję.",
+        price: 18.50,
         available: true,
-        isNew: false,
-        rate: 4.9
+        isNew: true,
+        rate: 4.5,
     },
     {
         id: 4,
-        name: "Kwiaty w doniczce",
-        category: "Pot Plant",
-        image: "https://images.pexels.com/photos/1159851/pexels-photo-1159851.jpeg",
+        name: "Egzotyczna Orkidea",
+        category: "Orchid",
+        image: "/images/flowers/roza.jpg",
         generalCategory: "flower",
-        description: "Kwiaty w doniczce to piękna i trwała dekoracja do domu.",
-        price: 100.00,
-        available: true,
-        isNew: false,
-        rate: 5.0
+        description:
+            "Orkidea to kwiat o subtelnym pięknie i egzotycznym charakterze. Doskonały wybór dla miłośników niezwykłych roślin. Dostępny w różnych odmianach kolorystycznych.",
+        price: 25.99,
+        isNew: true,
+        rate: 4.8,
     },
     {
         id: 5,
-        name: "Bukiet ślubny",
-        category: "Bouquet",
-        image: "https://images.pexels.com/photos/1159852/pexels-photo-1159852.jpeg",
+        name: "Zimowa Azalia",
+        category: "Azalea",
+        image: "/images/flowers/lilia.jpg",
         generalCategory: "flower",
-        description: "Bukiet ślubny to najważniejszy element każdej ślubnej stylizacji.",
-        price: 300.00,
+        description:
+            "Azalia to kwiat o pięknych, delikatnych kwiatach, który doskonale sprawdzi się jako ozdoba domu. Idealny na zimowe dni, dodając nutę koloru do wnętrza.",
+        price: 22.75,
         available: true,
         isNew: false,
-        rate: 4.8
-    },
-    {
-        id: 6,
-        name: "Bukiet pogrzebowy",
-        category: "Bouquet",
-        image: "https://images.pexels.com/photos/1159853/pexels-photo-1159853.jpeg",
-        generalCategory: "flower",
-        description: "Bukiet pogrzebowy to wyraz szacunku i pamięci o zmarłej osobie.",
-        price: 250.00,
-        available: true,
-        isNew: false,
-        rate: 4.6
-    },
-    {
-        id: 7,
-        name: "Kwiaty na walentynki",
-        category: "Bouquet",
-        image: "https://images.pexels.com/photos/1159854/pexels-photo-1159854.jpeg",
-        generalCategory: "flower",
-        description: "Kwiaty na walentynki to idealny prezent dla ukochanej osoby.",
-        price: 170.00,
-        available: true,
-        isNew: false,
-        rate: 5.0
-    },
-    {
-        id: 8,
-        name: "Kwiaty na urodziny",
-        category: "Bouquet",
-        image: "https://images.pexels.com/photos/1159855/pexels-photo-1159855.jpeg",
-        generalCategory: "flower",
-        description: "Kwiaty na urodziny to piękny i elegancki prezent dla solenizanta.",
-        price: 150.00,
-        available: true,
-        isNew: false,
-        rate: 4.9
+        rate: 4.2,
     },
 ];
