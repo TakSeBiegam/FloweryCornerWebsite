@@ -80,18 +80,16 @@ export default function Product({ params }: { params: { name: string } }) {
     return <></>;
   }
   return (
-    <div className="grid grid-cols-[4fr_3fr_2fr] p-5 gap-20">
+    <div className="grid grid-cols-[2fr_2fr] p-5 gap-20">
       <div>
-        <figure className="">
-          <div className=" relative w-96 h-96 overflow-hidden rounded-lg">
-            <Image
-              className="object-cover"
-              fill
-              src={p.image}
-              alt="image description"
-            />
-          </div>
-        </figure>
+        <div className="relative w-full h-full overflow-hidden rounded-lg">
+          <Image
+            className="object-cover"
+            fill
+            src={p.image}
+            alt="image description"
+          />
+        </div>
       </div>
       <div className="flex flex-col gap-4">
         <span className="font-medium text-5xl">{p.name}</span>
