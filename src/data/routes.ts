@@ -1,8 +1,8 @@
 export const navbarRoutes = [
   { label: "Strona główna", href: "/" },
-  { label: "Sklep", href: "shop" },
-  { label: "Blog", href: "blog" },
-  { label: "Kontakt", href: "contact" },
+  { label: "Sklep", href: "/shop" },
+  { label: "Blog", href: "/blog" },
+  { label: "Kontakt", href: "/contact" },
 ];
 
 export const categoryRoutes = [
