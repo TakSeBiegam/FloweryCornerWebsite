@@ -17,3 +17,17 @@ export const homePageGridMockData = [
   { name: "flower19", imgSrc: "/images/flowerMock.webp" },
   { name: "flower20", imgSrc: "/images/flowerMock.webp" },
 ];
+
+export const shopFilters = [
+  { header: "Status", options: ["Buy now", "Ending soon", "New arrivals"] },
+  // {
+  //   header: "Filter by occasion",
+  //   options: ["Birthday", "Anniversary", "Wedding"],
+  // },
+  {
+    header: "Colllection",
+    options: ["rose", "tulip", "gerbera", "orchid", "azalea"],
+  },
+  { header: "status", options: ["Buy now", "Ending soon", "New arrivals"] },
+  { header: "Price" },
+];
