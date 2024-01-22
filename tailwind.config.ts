@@ -7,7 +7,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: { primary: { bg: "#acd1ca", button: "#f5deb3" } },
+      colors: { primary: { bg: "#acd1ca", button: "#ecc16f" } },
     },
   },
   plugins: [],
