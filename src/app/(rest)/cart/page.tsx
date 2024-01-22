@@ -1,8 +1,11 @@
+"use client";
+
 import { products } from "@/data/products";
+import { useCartContainer } from "@/logic/cart";
 import Image from "next/image";
 
 export default function Cart() {
-  const productsInCart = [products[0], products[1]];
+  const { cart, setCart } = useCartContainer();
   return (
     <div className="w-1/2 mx-auto ">
       <span className="font-semibold text-3xl">Koszyk</span>
@@ -11,7 +14,7 @@ export default function Cart() {
         <span>Suma</span>
       </div>
 
-      {productsInCart.map((p, index) => (
+      {cart.map((p, index) => (
         <div key={index}>
           <div className="bg-white h-0.5 rounded-2xl" />
           <div className="flex justify-between pt-4 items-start">
@@ -50,7 +53,7 @@ export default function Cart() {
       <div className="flex justify-between font-semibold text-xl py-4">
         <div>Suma Całkowita</div>
         <div>
-          {productsInCart
+          {cart
             .reduce((pv, cv) => (pv += cv.price), 0)
             .toLocaleString(undefined, {
               minimumFractionDigits: 2,
@@ -84,6 +87,9 @@ export default function Cart() {
           Przejdź do płatności
         </button>
       </div>
+      <button onClick={() => (console.log("a"), setCart([products[0]]))}>
+        NOWY GBUTTON
+      </button>
     </div>
   );
 }

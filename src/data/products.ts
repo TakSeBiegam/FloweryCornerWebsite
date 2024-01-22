@@ -9,6 +9,7 @@ export interface Product {
     available?: boolean;
     isNew?: boolean;
     rate: number;
+    quantity: number;
 }
 
 export const products: Product[] = [
@@ -24,6 +25,7 @@ export const products: Product[] = [
         available: true,
         isNew: true,
         rate: 4.3,
+        quantity: 1
     },
     {
         id: 2,
@@ -37,6 +39,7 @@ export const products: Product[] = [
         available: true,
         isNew: false,
         rate: 4.0,
+        quantity: 1
     },
     {
         id: 3,
@@ -50,6 +53,7 @@ export const products: Product[] = [
         available: true,
         isNew: true,
         rate: 4.5,
+        quantity: 1
     },
     {
         id: 4,
@@ -62,6 +66,7 @@ export const products: Product[] = [
         price: 25.99,
         isNew: true,
         rate: 4.8,
+        quantity: 1
     },
     {
         id: 5,
@@ -75,5 +80,6 @@ export const products: Product[] = [
         available: true,
         isNew: false,
         rate: 4.2,
+        quantity: 1
     },
 ];
