@@ -1,9 +1,24 @@
+"use client";
+
 import { products } from "@/data/products";
 import { cn } from "@/lib/utils";
 import { StarRating } from "../_components/StarRating";
 import Image from "next/image";
+import { useState } from "react";
+import { useCartContainer } from "@/logic/cart";
+import { useRouter } from "next/navigation";
 
-const ProductQuantity = () => {
+interface ProductQuantityProps {
+  addQuantity: () => void;
+  subtractQuantity: () => void;
+  quantity: number;
+}
+
+const ProductQuantity: React.FC<ProductQuantityProps> = ({
+  addQuantity,
+  subtractQuantity,
+  quantity,
+}) => {
   return (
     <form className="max-w-xs">
       <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -13,6 +28,7 @@ const ProductQuantity = () => {
         <button
           type="button"
           id="decrement-button"
+          onClick={subtractQuantity}
           data-input-counter-decrement="quantity-input"
           className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
         >
@@ -38,11 +54,13 @@ const ProductQuantity = () => {
           aria-describedby="helper-text-explanation"
           className="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Wybierz"
+          value={quantity === 0 ? "Wybierz" : quantity}
           required
         />
         <button
           type="button"
           id="increment-button"
+          onClick={addQuantity}
           data-input-counter-increment="quantity-input"
           className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
         >
@@ -74,7 +92,14 @@ const ProductQuantity = () => {
 
 export default function Product({ params }: { params: { name: string } }) {
   const FlowerId = Number.parseInt(params.name);
-  const p = products.find((p) => FlowerId === p.id);
+  const { push } = useRouter();
+  const p = products.find((p) => FlowerId === p.id) || products[0];
+  const { saveCart } = useCartContainer();
+  const [quantity, setQuantity] = useState(0);
+  const handleSubtrackQuantity = () =>
+    setQuantity((p) => (p - 1 < 0 ? p : p - 1));
+  const handleAddQuantity = () => setQuantity((p) => (p + 1 > 99 ? p : p + 1));
+
   if (!p) {
     //Handle it somehow
     return <></>;
@@ -112,7 +137,11 @@ export default function Product({ params }: { params: { name: string } }) {
           </div>
         </div>
         <div>
-          <ProductQuantity />
+          <ProductQuantity
+            addQuantity={handleAddQuantity}
+            subtractQuantity={handleSubtrackQuantity}
+            quantity={quantity}
+          />
         </div>
         <button
           type="submit"
@@ -122,6 +151,12 @@ export default function Product({ params }: { params: { name: string } }) {
         </button>
         <button
           type="button"
+          onClick={() => {
+            if (quantity > 0) {
+              saveCart([{ ...p, quantity }]);
+              push("/cart");
+            }
+          }}
           className="py-2 px-6  font-semibold shadow-md text-gray-900 bg-white rounded-2xl  hover:bg-gray-100 hover:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
         >
           Dodaj do koszyka

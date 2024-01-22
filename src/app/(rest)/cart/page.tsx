@@ -5,7 +5,7 @@ import { useCartContainer } from "@/logic/cart";
 import Image from "next/image";
 
 export default function Cart() {
-  const { cart, setCart } = useCartContainer();
+  const { cart, saveCart } = useCartContainer();
   return (
     <div className="w-1/2 mx-auto ">
       <span className="font-semibold text-3xl">Koszyk</span>
@@ -17,8 +17,8 @@ export default function Cart() {
       {cart.map((p, index) => (
         <div key={index}>
           <div className="bg-white h-0.5 rounded-2xl" />
-          <div className="flex justify-between pt-4 items-start">
-            <div className="flex gap-4 items-start p-5">
+          <div className="flex justify-between pt-4  items-start">
+            <div className="flex gap-4 items-start py-5 w-full">
               <div className="h-32 w-32 overflow-hidden rounded-2xl relative">
                 <Image
                   src={p.image}
@@ -29,13 +29,13 @@ export default function Cart() {
               </div>
               <div className="flex flex-grow flex-col gap-4">
                 <div className="flex justify-between items-start">
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col  gap-4">
                     <p className="font-medium">{p.name}</p>
                     <p className="font-medium text-sm text-gray-600">
                       {index + 1} pozycja w koszyku
                     </p>
                   </div>
-                  <div className="font-medium text-right">
+                  <div className="font-medium ">
                     <p>
                       {p.price.toLocaleString(undefined, {
                         minimumFractionDigits: 2,
@@ -54,7 +54,7 @@ export default function Cart() {
         <div>Suma Całkowita</div>
         <div>
           {cart
-            .reduce((pv, cv) => (pv += cv.price), 0)
+            .reduce((pv, cv) => (pv += cv.price * cv.quantity), 0)
             .toLocaleString(undefined, {
               minimumFractionDigits: 2,
               maximumFractionDigits: 2,
@@ -87,9 +87,6 @@ export default function Cart() {
           Przejdź do płatności
         </button>
       </div>
-      <button onClick={() => (console.log("a"), setCart([products[0]]))}>
-        NOWY GBUTTON
-      </button>
     </div>
   );
 }
