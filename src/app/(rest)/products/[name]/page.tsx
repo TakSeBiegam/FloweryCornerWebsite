@@ -71,7 +71,7 @@ export default function Product({ params }: { params: { name: string } }) {
         <button
           type="button"
           onClick={() => {
-            if (quantity > 0) {
+            if (quantity > 0 && p.available) {
               saveCart([{ ...p, quantity }]);
               push("/cart");
             }
