@@ -45,7 +45,7 @@ export const products: Product[] = [
     id: 3,
     name: "Kolorowy Gerber",
     category: "Gerbera",
-    image: "/images/flowers/roza.jpg",
+    image: "/images/flowers/gerber.webp",
     generalCategory: "flower",
     description:
       "Gerbera to kwiat pełen energii i radości. Doskonały wybór, aby wyrazić pozytywne emocje. Dostępny w różnorodnych kolorach, idealny na każdą okazję.",
@@ -57,9 +57,9 @@ export const products: Product[] = [
   },
   {
     id: 4,
-    name: "Egzotyczna Orkidea",
+    name: "Egzotyczna Orchidea",
     category: "Orchid",
-    image: "/images/flowers/roza.jpg",
+    image: "/images/flowers/orchidea.jpg",
     generalCategory: "flower",
     description:
       "Orkidea to kwiat o subtelnym pięknie i egzotycznym charakterze. Doskonały wybór dla miłośników niezwykłych roślin. Dostępny w różnych odmianach kolorystycznych.",
@@ -72,7 +72,7 @@ export const products: Product[] = [
     id: 5,
     name: "Zimowa Azalia",
     category: "Azalea",
-    image: "/images/flowers/lilia.jpg",
+    image: "/images/flowers/azalia.webp",
     generalCategory: "flower",
     description:
       "Azalia to kwiat o pięknych, delikatnych kwiatach, który doskonale sprawdzi się jako ozdoba domu. Idealny na zimowe dni, dodając nutę koloru do wnętrza.",

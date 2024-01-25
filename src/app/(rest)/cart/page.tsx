@@ -1,11 +1,13 @@
 "use client";
 
-import { products } from "@/data/products";
 import { useCartContainer } from "@/logic/cart";
 import Image from "next/image";
+import { ProductQuantity } from "../products/[name]/page";
+import { useEffect } from "react";
 
 export default function Cart() {
-  const { cart, saveCart } = useCartContainer();
+  const { cart, changeItemQuantity } = useCartContainer();
+  const iq = useEffect(() => changeItemQuantity(p.id, true));
   return (
     <div className="w-1/2 mx-auto ">
       <span className="font-semibold text-3xl">Koszyk</span>
@@ -14,51 +16,66 @@ export default function Cart() {
         <span>Suma</span>
       </div>
 
-      {cart.map((p, index) => (
-        <div key={index}>
-          <div className="bg-white h-0.5 rounded-2xl" />
-          <div className="flex justify-between pt-4  items-start">
-            <div className="flex gap-4 items-start py-5 w-full">
-              <div className="h-32 w-32 overflow-hidden rounded-2xl relative">
-                <Image
-                  src={p.image}
-                  fill
-                  className="object-cover"
-                  alt="kwiatek"
-                />
-              </div>
-              <div className="flex flex-grow flex-col gap-4">
-                <div className="flex justify-between items-start">
-                  <div className="flex flex-col  gap-4">
-                    <p className="font-medium">{p.name}</p>
-                    <p className="font-medium text-sm text-gray-600">
-                      {index + 1} pozycja w koszyku
-                    </p>
+      {cart.map(
+        (p, index) =>
+          p && (
+            <div key={index}>
+              <div className="bg-white h-0.5 rounded-2xl" />
+              <div className="flex justify-between pt-4  items-start">
+                <div className="flex gap-4 items-start py-5 w-full">
+                  <div className="h-32 w-32 overflow-hidden rounded-2xl relative">
+                    <Image
+                      src={p.image}
+                      fill
+                      className="object-cover"
+                      alt="kwiatek"
+                    />
                   </div>
-                  <div className="font-medium ">
-                    <p>
-                      {p.price.toLocaleString(undefined, {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      })}
-                    </p>
+                  <div className="flex flex-grow flex-col gap-4">
+                    <div className="flex justify-between items-start">
+                      <div className="flex flex-col  gap-4">
+                        <p className="font-medium">{p.name}</p>
+                        <p className="font-medium text-sm text-gray-600">
+                          {index + 1} pozycja w koszyku
+                        </p>
+                      </div>
+                      <div className="font-medium ">
+                        <p>
+                          {p.price.toLocaleString(undefined, {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })}
+                        </p>
+                      </div>
+                    </div>
                   </div>
+                  <ProductQuantity
+                    addQuantity={() => changeItemQuantity(p.id, true)}
+                    subtractQuantity={() => changeItemQuantity(p.id, false)}
+                    quantity={p.quantity}
+                  />
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      ))}
+          )
+      )}
       <div className="bg-white h-0.5 rounded-2xl" />
       <div className="flex justify-between font-semibold text-xl py-4">
         <div>Suma Całkowita</div>
         <div>
-          {cart
-            .reduce((pv, cv) => (pv += cv.price * cv.quantity), 0)
-            .toLocaleString(undefined, {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}
+          {cart.length
+            ? cart
+                .reduce((pv, cv) => {
+                  if (cv) {
+                    pv += cv.price * cv.quantity;
+                  }
+                  return pv;
+                }, 0)
+                .toLocaleString(undefined, {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })
+            : 0}
         </div>
       </div>
       <div className="flex items-center">

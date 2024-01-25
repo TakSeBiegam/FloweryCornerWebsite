@@ -22,7 +22,6 @@ const CartContainer = createContainer(() => {
             return;
         }
         setCart((prevCart) => {
-            console.log("setcart")
             const updatedCart = [...prevCart];
             items.forEach((product) => {
                 const indexItemInInventory = updatedCart.findIndex((p) => p.id === product.id);
@@ -33,7 +32,6 @@ const CartContainer = createContainer(() => {
                 }
             });
             if (typeof localStorage !== "undefined") {
-                console.log(updatedCart);
                 localStorage.setItem("Cart", JSON.stringify(updatedCart));
             }
             return updatedCart;
@@ -42,21 +40,32 @@ const CartContainer = createContainer(() => {
 
     const changeItemQuantity = (itemId: number, increase: boolean) => {
         setCart((prevCart) => {
+            if (!prevCart) {
+                return [];
+            }
+
             const updatedCart = [...prevCart];
-            const indexItemInInventory = updatedCart.findIndex((p) => p.id === itemId);
+            const indexItemInInventory = updatedCart.findIndex((p) => p && p.id === itemId);
+
             if (indexItemInInventory !== -1) {
-                updatedCart[indexItemInInventory].quantity = increase ? updatedCart[indexItemInInventory].quantity + 1 : updatedCart[indexItemInInventory].quantity - 1;
-                if (updatedCart[indexItemInInventory].quantity <= 0) {
-                    delete updatedCart[indexItemInInventory];
+                updatedCart[indexItemInInventory].quantity = increase
+                    ? updatedCart[indexItemInInventory].quantity + 1
+                    : updatedCart[indexItemInInventory].quantity - 1;
+
+                if (updatedCart[indexItemInInventory].quantity === 0) {
+                    updatedCart.splice(indexItemInInventory, 1);
                 }
+
                 if (typeof localStorage !== "undefined") {
                     localStorage.setItem("Cart", JSON.stringify(updatedCart));
                 }
             }
 
             return updatedCart;
-        })
-    }
+        });
+    };
+
+
     return { cart, setCart, saveCart, changeItemQuantity };
 });
 

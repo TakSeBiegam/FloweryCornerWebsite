@@ -12,13 +12,13 @@ export const HomeGrid = () => {
         <p className="font-medium">Specjalne oferty</p>
       </Paper>
       <Paper className="flex justify-between">
-        <p className="font-medium">Trendy kwiatki łaaaaa</p>
+        <p className="font-medium">Trendy florystyczne</p>
         <div className="flex">
           <ChevronLeft className="cursor-pointer" />
           <ChevronRight className="cursor-pointer" />
         </div>
       </Paper>
-      <Paper className="max-h-96">Dziwne info</Paper>
+      <Paper className="max-h-96">REKLAMA</Paper>
       <div className=" grid grid-cols-3 gap-6">
         {homePageGridMockData.map((data) => (
           <FlowerTile {...data} key={data.name} />

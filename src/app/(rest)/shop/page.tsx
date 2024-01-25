@@ -5,12 +5,29 @@ import { ShopTile } from "./_components/ShopTile";
 import { products } from "@/data/products";
 import { shopFilters } from "@/data/mockData";
 import { Filter } from "./_components/Filter";
-import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Shop() {
-  const { back } = useRouter();
+  const productsOnPage = products;
+  const [filteredProducts, setFilteredProducts] = useState(products);
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const titleParam = queryParams.get("title");
+    if (!titleParam || titleParam === "") {
+      setFilteredProducts(products);
+    } else {
+      const regex = new RegExp(titleParam, "i");
+      const filteredProducts = productsOnPage.filter((product) =>
+        regex.test(product.name)
+      );
+      if (filteredProducts.length === 0) {
+        setFilteredProducts(products);
+      } else {
+        setFilteredProducts(filteredProducts);
+      }
+    }
+  }, [location.toString()]);
+
   return (
     <>
       <div className="grid grid-cols-[1fr_3fr] gap-5 select-none">
@@ -22,7 +39,7 @@ export default function Shop() {
         </div>
         <div className=" gap-7 flex flex-col">
           <div className="grid grid-cols-3 gap-5">
-            {products.map((p) => (
+            {filteredProducts.map((p) => (
               <ShopTile {...p} key={p.name} />
             ))}
           </div>

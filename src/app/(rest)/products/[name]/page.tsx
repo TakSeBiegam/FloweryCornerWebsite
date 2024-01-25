@@ -8,13 +8,13 @@ import { useState } from "react";
 import { useCartContainer } from "@/logic/cart";
 import { useRouter } from "next/navigation";
 
-interface ProductQuantityProps {
+export interface ProductQuantityProps {
   addQuantity: () => void;
   subtractQuantity: () => void;
   quantity: number;
 }
 
-const ProductQuantity: React.FC<ProductQuantityProps> = ({
+export const ProductQuantity: React.FC<ProductQuantityProps> = ({
   addQuantity,
   subtractQuantity,
   quantity,
