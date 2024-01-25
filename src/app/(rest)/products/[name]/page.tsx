@@ -7,13 +7,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useCartContainer } from "@/logic/cart";
 import { useRouter } from "next/navigation";
-import { ProductQuantity } from "../_components/ProductQuantity";
-
-export interface ProductQuantityProps {
-  addQuantity: () => void;
-  subtractQuantity: () => void;
-  quantity: number;
-}
+import { ProductQuantity } from "../ProductQuantity";
 
 export default function Product({ params }: { params: { name: string } }) {
   const FlowerId = Number.parseInt(params.name);

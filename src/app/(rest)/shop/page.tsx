@@ -26,7 +26,7 @@ export default function Shop() {
         setFilteredProducts(filteredProducts);
       }
     }
-  }, [location.toString()]);
+  }, []);
 
   return (
     <>

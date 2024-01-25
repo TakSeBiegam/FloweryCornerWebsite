@@ -1,4 +1,4 @@
-import { ProductQuantityProps } from "../[name]/page";
+import { ProductQuantityProps } from "./props";
 
 export const ProductQuantity: React.FC<ProductQuantityProps> = ({
   addQuantity,

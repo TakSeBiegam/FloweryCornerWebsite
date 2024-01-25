@@ -2,12 +2,10 @@
 
 import { useCartContainer } from "@/logic/cart";
 import Image from "next/image";
-import { ProductQuantity } from "../products/[name]/page";
-import { useEffect } from "react";
+import { ProductQuantity } from "../products/ProductQuantity";
 
 export default function Cart() {
   const { cart, changeItemQuantity } = useCartContainer();
-  const iq = useEffect(() => changeItemQuantity(p.id, true));
   return (
     <div className="w-1/2 mx-auto ">
       <span className="font-semibold text-3xl">Koszyk</span>
