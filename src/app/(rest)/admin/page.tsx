@@ -1,17 +1,18 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { orders } from "@/data/orders";
+import { Order, orders } from "@/data/orders";
 
 export default function Admin() {
   const router = useRouter();
-
+  const [orders, setOrders] = useState<Order[]>();
   useEffect(() => {
     const authorizationObjectString = localStorage.getItem("Authorization");
     if (authorizationObjectString) {
       const authorizationObject = JSON.parse(authorizationObjectString);
       if (authorizationObject.logged) {
+        setOrders(orders);
       } else {
         router.push("/");
       }
@@ -22,59 +23,72 @@ export default function Admin() {
 
   return (
     <div className="w-1/2 mx-auto ">
-      <span className="font-semibold text-3xl">Koszyk</span>
+      <span className="font-semibold text-3xl">Lista zamówień</span>
       <div className="flex justify-between py-5 font-medium">
-        <span>Pozycje w koszyku</span>
-        <span>Suma</span>
+        <span>Pozycje w zamówieniach</span>
+        <span>Suma zamówienia</span>
       </div>
 
-      {orders.map(
-        (p, index) =>
-          p && (
-            <div key={index}>
-              <div className="bg-white h-0.5 rounded-2xl" />
-              <div className="flex justify-between pt-4  items-start">
-                <div className="flex gap-4 items-start py-5 w-full">
-                  <div className="flex flex-grow flex-col gap-4">
-                    <div className="flex justify-between items-start">
-                      <div className="flex flex-col  gap-4">
-                        <p className="font-medium">{`id zamówienia: ${p.id}`}</p>
-                      </div>
-                      <div className="font-medium ">
-                        <p>
-                          {p.totalPrice.toLocaleString(undefined, {
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2,
-                          })}
-                        </p>
+      {orders &&
+        orders.map(
+          (p, index) =>
+            p && (
+              <div key={index}>
+                <div className="bg-white h-0.5 rounded-2xl" />
+                <div className="flex justify-between pt-4  items-start">
+                  <div className="flex gap-4 items-start py-5 w-full">
+                    <div className="flex flex-grow flex-col gap-4">
+                      <div className="flex justify-between items-start">
+                        <div className="flex flex-col  gap-4">
+                          <p className="font-medium">{`id zamówienia: ${p.id}`}</p>
+                        </div>
+                        <div className="font-medium ">
+                          <p>
+                            {p.totalPrice.toLocaleString(undefined, {
+                              minimumFractionDigits: 2,
+                              maximumFractionDigits: 2,
+                            })}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              {p.products.map((product) => {
-                return (
-                  <div
-                    key={product.name}
-                    className="flex justify-between h-full"
+                {p.products.map((product) => {
+                  return (
+                    <div
+                      key={product.name}
+                      className="flex justify-between h-full"
+                    >
+                      <p className="font-medium">{`produkt: ${product.name}`}</p>
+                      <p>{`sztuk: ${product.quantity}`}</p>
+                    </div>
+                  );
+                })}
+                <div className="flex justify-end py-5">
+                  <button
+                    type="submit"
+                    className="bg-primary-button px-20 py-1.5 font-semibold rounded-2xl shadow-md"
                   >
-                    <p className="font-medium">{`produkt: ${product.name}`}</p>
-                    <p>{`sztuk: ${product.quantity}`}</p>
-                  </div>
-                );
-              })}
-              <div className="flex justify-end py-5">
-                <button
-                  type="submit"
-                  className="bg-primary-button px-20 py-1.5 font-semibold rounded-2xl shadow-md"
-                >
-                  Zrealizuj zamówienie
-                </button>
+                    Zrealizuj zamówienie
+                  </button>
+                </div>
               </div>
-            </div>
-          )
-      )}
+            )
+        )}
       <div className="bg-white h-0.5 rounded-2xl" />
+      <div className="flex justify-center py-36">
+        <button
+          type="submit"
+          onClick={() => {
+            localStorage.removeItem("Authorization");
+            router.push("/");
+          }}
+          className="bg-primary-button px-20 py-1.5 font-semibold rounded-2xl shadow-md"
+        >
+          Wyloguj się
+        </button>
+      </div>
     </div>
   );
 }

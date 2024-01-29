@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const LoginForm = (object: { username: string; password: string }) => {
   const [tempPassword, setTempPassword] = useState("");
@@ -125,9 +125,21 @@ const LoginForm = (object: { username: string; password: string }) => {
 };
 
 export default function Login() {
+  const { push } = useRouter();
+  useEffect(() => {
+    const authorizationObjectString = localStorage.getItem("Authorization");
+    console.log("any");
+    if (authorizationObjectString) {
+      console.log("b");
+      const authorizationObject = JSON.parse(authorizationObjectString);
+      if (authorizationObject.logged) {
+        console.log("a");
+        push("/admin");
+      }
+    }
+  }, []);
   const [username, setUsername] = useState("admin@uwb.edu.pl");
   const [password, setPassword] = useState("admin1");
-  const { push } = useRouter();
   return (
     <div className="">
       <LoginForm {...{ username, password }} />

@@ -13,7 +13,9 @@ export const NavbarIcons = () => {
       </Link>
 
       <div>
-        <UserRound />
+        <Link href="/login">
+          <UserRound />
+        </Link>
       </div>
     </div>
   );
