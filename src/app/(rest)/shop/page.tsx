@@ -2,30 +2,33 @@
 
 import { HeroSearch } from "@/app/(root)/_components/HeroSearch";
 import { ShopTile } from "./_components/ShopTile";
-import { products } from "@/data/products";
 import { shopFilters } from "@/data/mockData";
 import { Filter } from "./_components/Filter";
 import { useEffect, useState } from "react";
+import { useBackend } from "@/external/client";
+import { ModelTypes } from "@/types/zeus";
+
+type Products = ModelTypes["Product"][];
 
 export default function Shop() {
-  const productsOnPage = products;
-  const [filteredProducts, setFilteredProducts] = useState(products);
+  const { getProducts } = useBackend();
+  const [filteredProducts, setFilteredProducts] = useState<
+    undefined | Products
+  >();
+
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    const queryParams = new URLSearchParams(location.search);
-    const titleParam = queryParams.get("title");
-    if (!titleParam || titleParam === "") {
-      setFilteredProducts(products);
-    } else {
-      const regex = new RegExp(titleParam, "i");
-      const filteredProducts = productsOnPage.filter((product) =>
-        regex.test(product.name)
-      );
-      if (filteredProducts.length === 0) {
+    (async () => {
+      setLoading(true);
+      try {
+        const products = await getProducts();
         setFilteredProducts(products);
-      } else {
-        setFilteredProducts(filteredProducts);
+      } catch (e) {
+        console.log(e);
+      } finally {
+        setLoading(false);
       }
-    }
+    })();
   }, []);
 
   return (
@@ -39,7 +42,7 @@ export default function Shop() {
         </div>
         <div className=" gap-7 flex flex-col">
           <div className="grid grid-cols-3 gap-5">
-            {filteredProducts.map((p) => (
+            {filteredProducts?.map((p) => (
               <ShopTile {...p} key={p.name} />
             ))}
           </div>

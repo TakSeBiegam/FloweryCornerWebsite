@@ -1,7 +1,7 @@
 export const navbarRoutes = [
   { label: "Strona główna", href: "/" },
   { label: "Sklep", href: "/shop" },
-  { label: "Blog", href: "/blog" },
+  { label: "Blog", href: "/blogs" },
   { label: "Kontakt", href: "/contact" },
 ];
 

@@ -23,7 +23,10 @@ export default function Cart() {
                 <div className="flex gap-4 items-start py-5 w-full">
                   <div className="h-32 w-32 overflow-hidden rounded-2xl relative">
                     <Image
-                      src={p.image}
+                      src={
+                        (p?.images && p.images[0]) ||
+                        "/images/flowers/default.jpg"
+                      }
                       fill
                       className="object-cover"
                       alt="kwiatek"
@@ -48,8 +51,8 @@ export default function Cart() {
                     </div>
                   </div>
                   <ProductQuantity
-                    addQuantity={() => changeItemQuantity(p.id, true)}
-                    subtractQuantity={() => changeItemQuantity(p.id, false)}
+                    addQuantity={() => changeItemQuantity(p._id, true)}
+                    subtractQuantity={() => changeItemQuantity(p._id, false)}
                     quantity={p.quantity}
                   />
                 </div>

@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Order, orders } from "@/data/orders";
+import { orders as or } from "@/data/orders";
 
 export default function Admin() {
   const router = useRouter();
-  const [orders, setOrders] = useState<Order[]>();
+  const [orders, setOrders] = useState(or);
   useEffect(() => {
     const authorizationObjectString = localStorage.getItem("Authorization");
     if (authorizationObjectString) {
@@ -31,20 +31,20 @@ export default function Admin() {
 
       {orders &&
         orders.map(
-          (p, index) =>
-            p && (
+          (o, index) =>
+            o && (
               <div key={index}>
                 <div className="bg-white h-0.5 rounded-2xl" />
                 <div className="flex justify-between pt-4  items-start">
-                  <div className="flex gap-4 items-start py-5 w-full">
+                  <div className="flex gap-4 items-start py-3 w-full">
                     <div className="flex flex-grow flex-col gap-4">
                       <div className="flex justify-between items-start">
-                        <div className="flex flex-col  gap-4">
-                          <p className="font-medium">{`id zamówienia: ${p.id}`}</p>
+                        <div className="flex flex-col gap-4">
+                          <p className="font-medium">{`id zamówienia: ${o.id}`}</p>
                         </div>
                         <div className="font-medium ">
                           <p>
-                            {p.totalPrice.toLocaleString(undefined, {
+                            {o.totalPrice.toLocaleString(undefined, {
                               minimumFractionDigits: 2,
                               maximumFractionDigits: 2,
                             })}
@@ -54,21 +54,34 @@ export default function Admin() {
                     </div>
                   </div>
                 </div>
-                {p.products.map((product) => {
+                {o.products.map((product) => {
                   return (
                     <div
                       key={product.name}
-                      className="flex justify-between h-full"
+                      className="flex justify-between h-full pl-3"
                     >
-                      <p className="font-medium">{`produkt: ${product.name}`}</p>
+                      <p className="font-medium">{` ${product.name}`}</p>
+
                       <p>{`sztuk: ${product.quantity}`}</p>
                     </div>
                   );
                 })}
-                <div className="flex justify-end py-5">
+                <div className="flex justify-between py-5">
+                  <div className="flex space-x-2">
+                    <p>klient: </p>
+                    <p className="font-medium">{`${o.firstName} ${o.lastName}`}</p>
+                  </div>
                   <button
                     type="submit"
-                    className="bg-primary-button px-20 py-1.5 font-semibold rounded-2xl shadow-md"
+                    {...(o.completed
+                      ? {
+                          className:
+                            "px-20 py-1.5 font-semibold rounded-2xl shadow-md",
+                        }
+                      : {
+                          className:
+                            "bg-primary-button px-20 py-1.5 font-semibold rounded-2xl shadow-md",
+                        })}
                   >
                     Zrealizuj zamówienie
                   </button>

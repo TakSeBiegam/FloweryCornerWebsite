@@ -1,11 +1,11 @@
-import { Product } from "@/data/products";
 import { cn } from "@/lib/utils";
+import { ModelTypes } from "@/types/zeus";
 import Image from "next/image";
 import Link from "next/link";
 
-export const ShopTile = (product: Product) => {
+export const ShopTile = (product: ModelTypes["Product"]) => {
   return (
-    <Link href={`/products/${product.id}`}>
+    <Link href={`/products/${product._id}`}>
       <div className="bg-white rounded-3xl flex flex-col p-5 gap-5">
         <div className="flex justify-between font-medium">
           <div className="cursor-pointer">
@@ -23,7 +23,7 @@ export const ShopTile = (product: Product) => {
           <Image
             className="object-cover"
             fill
-            src={product.image}
+            src={product.images[0]}
             alt={product.name}
           />
         </div>
